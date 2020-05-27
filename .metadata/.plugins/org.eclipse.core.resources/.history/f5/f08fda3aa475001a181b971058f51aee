@@ -1,0 +1,6 @@
+server.port=8012
+spring.application.name=PhotoAppAPIConfigServer
+spring.cloud.config.git.url=https://github.com/nadeemnsr/PhotoAppConguration.git
+spring.cloud.config.server.git.username=nadeem.nsr03@yahoo.com
+spring.cloud.configserver.git.password=nadeem@123
+spring.cloud.configserver.git.clone-on-start=false

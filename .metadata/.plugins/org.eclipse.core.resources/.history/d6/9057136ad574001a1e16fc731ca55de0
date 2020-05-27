@@ -1,0 +1,5 @@
+package com.discovery.zull.gateway.security;
+
+public class AuthenticationFiler extends UsernamePA{
+
+}

@@ -1,0 +1,31 @@
+package com.concurrency.executor;
+
+import java.util.Random;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class ExecutorDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		ExecutorService executor = Executors.newCachedThreadPool();
+
+		executor.submit(new Callable<Integer>() {
+
+			@Override
+			public Integer call() throws Exception {
+
+				Random r = new Random();
+
+				int duration = r.nextInt();
+				Thread.sleep(duration);
+				return null;
+			}
+
+		});
+
+	}
+
+}

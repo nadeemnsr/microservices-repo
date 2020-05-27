@@ -1,0 +1,7 @@
+package com.discovery.app.user.repository;
+
+import org.springframework.data.repository.CrudRepository;
+
+public class UsersRepositoty implements CrudRepository<T, ID> {
+
+}

@@ -1,0 +1,5 @@
+package com.design.factory.serrviceImpl;
+
+public class PcImpl {
+
+}

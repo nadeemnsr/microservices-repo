@@ -1,0 +1,5 @@
+package com.discovery.app.user.security;
+
+public class AuthenticationFilter {
+
+}

@@ -1,0 +1,9 @@
+package com.discovery.app.user.repository;
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.discovery.app.user.ui.model.UserDto;
+
+public class UsersRepositoty implements CrudRepository<UserDto, Long> {
+
+}

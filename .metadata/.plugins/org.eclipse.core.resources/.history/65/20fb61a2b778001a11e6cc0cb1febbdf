@@ -1,0 +1,46 @@
+package com.multithreading.concept;
+
+import java.util.concurrent.BrokenBarrierException;
+import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+
+public class CyclicBarrierTest {
+	public static CyclicBarrier newBarrier = new CyclicBarrier(3);
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
+
+class Computation1 implements Runnable {
+
+	public void run() {
+
+		try {
+			CyclicBarrierTest.newBarrier.await(3000, TimeUnit.MILLISECONDS);
+			// TODO Auto-generated catch block
+		} catch (InterruptedException | BrokenBarrierException | TimeoutException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}
+
+class Computation2 implements Runnable {
+
+	public void run() {
+
+		try {
+			CyclicBarrierTest.newBarrier.await();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (BrokenBarrierException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}

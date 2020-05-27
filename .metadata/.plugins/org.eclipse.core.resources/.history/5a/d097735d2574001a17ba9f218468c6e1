@@ -1,0 +1,8 @@
+package com.discovery.app.user.service;
+
+import com.discovery.app.user.ui.model.UserDto;
+
+public interface UserService {
+
+	UserDto createUser(UserDto dto);
+}

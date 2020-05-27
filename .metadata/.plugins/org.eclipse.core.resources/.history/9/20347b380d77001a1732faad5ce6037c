@@ -1,0 +1,23 @@
+server.port=8011
+spring.application.name=zuul
+eureka.client.service-url.defaultZone=http://localhost:8010/eureka
+spring.devtools.remote.restart.enabled=false
+eureka.instance.prefer-ip-address=true
+ribbon.ReadTimeout=60000
+
+api.h2console.url.path = /users-ws/h2-console/**
+api.registration.url.path =/users-ws/users
+api.login.url.path = /users-ws/users/login
+
+authorization.token.header.name=Authorization
+token.secret=hdskfjksjdf4929392kwrkwje932
+authorization.token.header.prefix = Bearer
+
+spring.rabbitmq.host=localhost
+spring.rabbitmq.port=5672
+spring.rabbitmq.username=sergey
+spring.rabbitmq.password=nadeem@123
+
+api.zuul.actuator.url.path=/actuator/*
+
+management.endpoints.web.exposure.include=beans,health,routes,httptrace

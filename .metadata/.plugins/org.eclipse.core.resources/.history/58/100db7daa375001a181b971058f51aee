@@ -1,0 +1,3 @@
+server.port=8012
+spring.application.name=PhotoAppAPIConfigServer
+spring.cloud.config.git.server=C:\Users\mkmcomputers\PhotoAppConguration

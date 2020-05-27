@@ -1,0 +1,4 @@
+spring.cloud.config.uri=http://localhost:8012
+spring.application.name=PhotoAppApiConfigServer
+spring.cloud.config.server.git.uri= https://github.com/nadeemnsr/PhotoAppConguration
+spring.cloud.config.server.bootstrap=true

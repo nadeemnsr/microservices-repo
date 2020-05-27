@@ -1,0 +1,26 @@
+package com.multithreading.concept;
+
+import java.util.Random;
+
+public class InturruptThreadDemo {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.out.println("started");
+		Thread t = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				Random r = new Random();
+
+				System.out.println(r.nextInt());
+
+			}
+		});
+
+		t.start();
+		t.join();
+
+		System.out.println("finished");
+	}
+
+}

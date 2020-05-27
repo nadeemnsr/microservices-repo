@@ -1,0 +1,22 @@
+package com.multithreading.concept;
+
+import java.util.concurrent.BlockingQueue;
+
+public class BlockingQueueDemo {
+
+	public static BlockingQueue<Integer> queue  = new BlockingQueue<>();
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+	private static void producer()
+	{
+		
+	}
+	
+	private static void consumer()
+	{
+		
+	}
+}

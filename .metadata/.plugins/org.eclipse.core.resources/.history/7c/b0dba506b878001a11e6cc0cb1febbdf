@@ -1,0 +1,69 @@
+package com.multithreading.concept;
+
+import java.util.concurrent.BrokenBarrierException;
+import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+
+public class CyclicBarrierTest implements Runnable {
+	public static CyclicBarrier newBarrier = new CyclicBarrier(3);
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		new Thread(new CyclicBarrierTest()).start();
+	}
+
+	@Override
+	public void run() {
+		System.out.println("Number of parties required to trip the barrier = " + newBarrier.getParties());
+		System.out.println("Sum of product and sum = " + (Computation1.product + Computation2.sum));
+
+		// creation of child thread
+		new Thread(new Computation1()).start();
+		new Thread(new Computation2()).start();
+
+		try {
+			CyclicBarrierTest.newBarrier.await();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (BrokenBarrierException e) {
+			e.printStackTrace();
+		}
+
+		System.out.println(Computation1.product + " -- " + Computation2.sum);
+
+		newBarrier.reset();
+		System.out.println("Barrier Reset Successfull");
+
+	}
+
+}
+
+class Computation1 implements Runnable {
+	public static int product = 0;
+
+	public void run() {
+		product = 2 * 3;
+		try {
+			CyclicBarrierTest.newBarrier.await(3000, TimeUnit.MILLISECONDS);
+		} catch (InterruptedException | BrokenBarrierException | TimeoutException e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+class Computation2 implements Runnable {
+	public static int sum = 0;
+
+	public void run() {
+		System.out.println("Is the Barrier broken ?" + CyclicBarrierTest.newBarrier.isBroken());
+		sum = 10 + 20;
+		try {
+			CyclicBarrierTest.newBarrier.await();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (BrokenBarrierException e) {
+			e.printStackTrace();
+		}
+	}
+}

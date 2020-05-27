@@ -1,0 +1,36 @@
+package com.multithreading.concept;
+
+import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+
+public class InturruptThreadDemo {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.out.println("started");
+		ExecutorService exe = Executors.newCachedThreadPool();
+
+		Future<?> fut = exe.submit(() -> {
+
+			Random r = new Random();
+			for (int i = 0; i < 1E8; i++) {
+				if (Thread.currentThread().interrupted()) {
+					System.out.println("interrupted");
+					break;
+				}
+			}
+			System.out.println(Math.sin(r.nextDouble()));
+		});
+
+		exe.shutdown();
+		Thread.sleep(500);
+		exe.shutdownNow();
+		fut.cancel(false);
+		exe.awaitTermination(1, TimeUnit.DAYS);
+
+		System.out.println("finished");
+	}
+
+}
