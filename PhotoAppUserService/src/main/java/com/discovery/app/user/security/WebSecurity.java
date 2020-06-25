@@ -33,31 +33,31 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.csrf().disable();
-		http.authorizeRequests().antMatchers("/**").hasIpAddress(env.getProperty("gateway.ip"))
-				.and().addFilter(getAuthenticationFilter());
+		http.authorizeRequests().antMatchers("/**").hasIpAddress(env.getProperty("gateway.ip")).and()
+				.addFilter(getAuthenticationFilter());
+
 		http.headers().frameOptions().disable();
+
 	}
 
 	private AuthenticationFilter getAuthenticationFilter() throws Exception {
 
-		AuthenticationFilter filter = new AuthenticationFilter(env, userService, authenticationManager());
-		// filter.setAuthenticationManager(authenticationManager());
+		AuthenticationFilter filter = new AuthenticationFilter( env, userService, authenticationManager() ); //
+		//filter.setAuthenticationManager(authenticationManager());
 		filter.setFilterProcessesUrl(env.getProperty("login.url.path"));
 		return filter;
 	}
 
 	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		// TODO Auto-generated method stub
-		auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder);
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception { 
+		 auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder);
 	}
 
-	@Override
-	public void configure(org.springframework.security.config.annotation.web.builders.WebSecurity web)
-			throws Exception {
-		web.ignoring().antMatchers("/h2-console/**");
-	}
-	
-	
+	/*
+	 * @Override public void
+	 * configure(org.springframework.security.config.annotation.web.builders.
+	 * WebSecurity web) throws Exception {
+	 * web.ignoring().antMatchers("/h2-console/**"); }
+	 */
 
 }

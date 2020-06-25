@@ -35,9 +35,11 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
 	@Autowired
 	public AuthenticationFilter(Environment env, UserService userService, AuthenticationManager authenticationManager) {
+
 		this.env = env;
 		this.userService = userService;
 		super.setAuthenticationManager(authenticationManager);
+
 	}
 
 	@Override
@@ -68,7 +70,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 				.signWith(SignatureAlgorithm.HS512, env.getProperty("token.secret")).compact();
 
 		response.addHeader("token", token);
-		response.addHeader("tokenTime",String.valueOf(Long.parseLong(env.getProperty("token.expiration_time"))));
+		response.addHeader("tokenTime", String.valueOf(Long.parseLong(env.getProperty("token.expiration_time"))));
 		response.addHeader("UserId", dto.getUserId());
 	}
 

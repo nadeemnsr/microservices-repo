@@ -39,7 +39,7 @@ public class PhotoAppUserServiceApplication {
 		return new RestTemplate();
 	}
 
-	@Bean
+	/*@Bean
 	@Profile("production")
 	Logger.Level feignLoggerLevel() {
 		return Logger.Level.NONE;
@@ -71,7 +71,7 @@ public class PhotoAppUserServiceApplication {
 		System.out.println("Development bean created  myapplication.environment"+env.getProperty("myapplication.environment"));
 		return "Development bean";
 	}
-	/*
+	
 	 * @Bean public FeignErrorDecoder getErrorDecoder() { return new
 	 * FeignErrorDecoder(); }
 	 */

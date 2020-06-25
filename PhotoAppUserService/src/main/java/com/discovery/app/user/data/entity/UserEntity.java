@@ -16,7 +16,7 @@ public class UserEntity implements Serializable {
 	private static final long serialVersionUID = 3590931806584127168L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue
 	private long id;
 
 	@Column(nullable = false, length = 50)
@@ -31,7 +31,7 @@ public class UserEntity implements Serializable {
 	@Column(nullable = false, unique = true)
 	private String userId;
 
-	@Column(nullable = false, unique = false)
+	@Column(nullable = false, unique = true)
 	private String encryptedPass;
 
 	public long getId() {
@@ -71,7 +71,7 @@ public class UserEntity implements Serializable {
 	}
 
 	public void setUserId(String userId) {
-		userId = userId;
+		this.userId = userId;
 	}
 
 	public String getEncryptedPass() {
