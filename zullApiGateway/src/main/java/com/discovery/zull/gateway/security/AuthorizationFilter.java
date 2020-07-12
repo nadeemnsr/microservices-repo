@@ -31,14 +31,14 @@ public class AuthorizationFilter extends BasicAuthenticationFilter {
 
 		String authorizationHeader = req.getHeader(env.getProperty("authorization.token.header.name"));
 
-		if (authorizationHeader == null || !authorizationHeader.startsWith(env.getProperty("authorization.token.header.prefix"))) {
+		if (authorizationHeader == null
+				|| !authorizationHeader.startsWith(env.getProperty("authorization.token.header.prefix"))) {
 			chain.doFilter(req, res);
 			return;
 		}
 
-		UsernamePasswordAuthenticationToken authorization = (UsernamePasswordAuthenticationToken) getAuthentication(
-				req);
-		
+		UsernamePasswordAuthenticationToken authorization = getAuthentication(req);
+
 		SecurityContextHolder.getContext().setAuthentication(authorization);
 		chain.doFilter(req, res);
 	}

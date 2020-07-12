@@ -1,6 +1,5 @@
 package com.discovery.zull.gateway.security;
 
-import org.apache.http.protocol.HTTP;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -23,14 +22,14 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-
 		http.csrf().disable();
 		http.headers().frameOptions().disable();
-		http.authorizeRequests().antMatchers(env.getProperty("api.users.actuator.url.path")).permitAll()
-				.antMatchers(env.getProperty("api.zuul.actuator.url.path")).permitAll()
-				.antMatchers(HttpMethod.POST, env.getProperty("api.h2console.url.path")).permitAll()
+		http.authorizeRequests()
+		/*.antMatchers(env.getProperty("api.zuul.actuator.url.path")).permitAll()
+				 .antMatchers(env.getProperty("api.users.actuator.url.path")).permitAll() */
+				.antMatchers(HttpMethod.POST, env.getProperty("api.login.url.path")).permitAll()
 				.antMatchers(HttpMethod.POST, env.getProperty("api.registration.url.path")).permitAll()
-				.antMatchers(HttpMethod.POST, env.getProperty("api.login.url.path")).permitAll().anyRequest()
+				.anyRequest()				
 				.authenticated().and().addFilter(new AuthorizationFilter(authenticationManager(), env));
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
